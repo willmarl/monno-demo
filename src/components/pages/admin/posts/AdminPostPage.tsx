@@ -1,0 +1,16 @@
+import { AdminPostSearchBar } from "@/features/admin/posts/components/AdminPostSearchBar";
+import { PostDataTable } from "./PostDataTable";
+import { AdminPostSearchParams } from "@/types/search-params";
+
+interface AdminPostPageProps {
+  searchParams?: AdminPostSearchParams;
+}
+
+export function AdminPostPage({ searchParams }: AdminPostPageProps) {
+  return (
+    <div className="container mx-auto py-10 flex flex-col gap-4">
+      <AdminPostSearchBar basePath="/admin/posts" />
+      <PostDataTable />
+    </div>
+  );
+}

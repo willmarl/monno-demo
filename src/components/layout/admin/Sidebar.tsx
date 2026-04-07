@@ -1,0 +1,147 @@
+"use client";
+
+import Link from "next/link";
+import {
+  LayoutDashboard,
+  Users,
+  FileText,
+  Logs,
+  MessageSquare,
+  CreditCard,
+  Contact,
+  Home,
+  Bookmark,
+  Newspaper,
+} from "lucide-react";
+import { useSessionUser } from "@/features/auth/hooks";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarTrigger,
+  useSidebar,
+} from "@/components/ui/sidebar";
+import { SideBarUser } from "./SidebarUser";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
+
+// Menu items.
+export const items = [
+  {
+    title: "Dashboard",
+    url: "/admin",
+    icon: LayoutDashboard,
+  },
+  {
+    title: "Users",
+    // url: "/admin/users",
+    url: "/admin/users?sort=createdAt%7Casc&statuses=ACTIVE%2CSUSPENDED%2CBANNED",
+    icon: Users,
+  },
+  {
+    title: "Posts",
+    url: "/admin/posts",
+    icon: FileText,
+  },
+  {
+    title: "Comments",
+    url: "/admin/comments",
+    icon: MessageSquare,
+  },
+  {
+    title: "Collections",
+    url: "/admin/collections",
+    icon: Bookmark,
+  },
+  {
+    title: "Logs",
+    url: "/admin/logs",
+    icon: Logs,
+  },
+  {
+    title: "Support",
+    url: "/admin/support",
+    icon: Contact,
+  },
+  {
+    title: "Articles",
+    url: "/admin/articles",
+    icon: Newspaper,
+  },
+];
+
+export const stripeItems = [
+  {
+    title: "Subscriptions",
+    url: "/admin/subscriptions",
+    icon: CreditCard,
+  },
+  {
+    title: "Products Purchased",
+    url: "/admin/products-purchased",
+    icon: CreditCard,
+  },
+  {
+    title: "Credit Purchases",
+    url: "/admin/credit-purchases",
+    icon: CreditCard,
+  },
+  {
+    title: "Credit Transactions",
+    url: "/admin/credit-transactions",
+    icon: CreditCard,
+  },
+];
+
+export function AppSidebar() {
+  const { data: user, isLoading } = useSessionUser();
+  const { state } = useSidebar();
+  const isStripeEnabled = process.env.NEXT_PUBLIC_STRIPE_ENABLED === "true";
+
+  const allItems = isStripeEnabled ? [...items, ...stripeItems] : items;
+
+  return (
+    <Sidebar collapsible="icon">
+      <SidebarHeader className="flex flex-row items-center justify-start">
+        <SidebarTrigger className="ml-auto" />
+      </SidebarHeader>
+      <SidebarContent>
+        <SidebarGroup>
+          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {allItems.map((item) => (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton asChild tooltip={item.title}>
+                    <a href={item.url}>
+                      <item.icon />
+                      <span>{item.title}</span>
+                    </a>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </SidebarContent>
+      <SidebarFooter
+        className={`flex gap-2 ${state === "collapsed" ? "flex-col" : "flex-row items-center"}`}
+      >
+        <Link
+          href="/"
+          className="text-muted-foreground hover:text-foreground transition-colors"
+        >
+          <Home size={20} />
+        </Link>
+        <ThemeToggle />
+        {user ? <SideBarUser user={user} /> : "Skeleton here"}
+      </SidebarFooter>
+    </Sidebar>
+  );
+}

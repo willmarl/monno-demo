@@ -1,0 +1,97 @@
+"use client";
+
+import { ReactNode } from "react";
+import { Button } from "@/components/ui/button";
+
+interface Props<T> {
+  items: T[];
+  isLoading?: boolean;
+  isFetchingNextPage?: boolean;
+  hasNextPage?: boolean;
+  onLoadMore: () => void;
+  renderItem: (item: T) => ReactNode;
+  renderSkeleton?: () => ReactNode;
+  skeletonCount?: number;
+  title?: string;
+  layout?: "grid" | "flex" | "custom";
+  gridClassName?: string;
+  emptyMessage?: string;
+}
+
+const LAYOUT_CLASSES = {
+  grid: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10",
+  flex: "flex flex-col gap-4",
+};
+
+export function CursorList<T extends { id: string | number }>({
+  items,
+  isLoading = false,
+  isFetchingNextPage = false,
+  hasNextPage = false,
+  onLoadMore,
+  renderItem,
+  renderSkeleton,
+  skeletonCount = 3,
+  title,
+  layout = "grid",
+  gridClassName,
+  emptyMessage = "No results found.",
+}: Props<T>) {
+  const containerClassName =
+    gridClassName || LAYOUT_CLASSES[layout === "custom" ? "grid" : layout];
+
+  if (isLoading && items.length === 0 && renderSkeleton) {
+    return (
+      <div className="space-y-8">
+        {title && <h1 className="text-3xl font-bold">{title}</h1>}
+        <div className={containerClassName}>
+          {Array.from({ length: skeletonCount }).map((_, i) => (
+            <div key={`skeleton-${i}`}>{renderSkeleton()}</div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (isLoading)
+    return (
+      <p className="text-center text-muted-foreground py-12">Loading...</p>
+    );
+
+  return (
+    <div className="space-y-8">
+      {title && <h1 className="text-3xl font-bold">{title}</h1>}
+
+      <div className={containerClassName}>
+        {items.map((item) => (
+          <div key={item.id}>{renderItem(item)}</div>
+        ))}
+      </div>
+
+      {items.length === 0 && !isLoading && (
+        <div className="text-center text-muted-foreground py-12">
+          <p>{emptyMessage}</p>
+        </div>
+      )}
+
+      {/* Load more button */}
+      {hasNextPage && (
+        <div className="flex justify-center">
+          <Button
+            onClick={onLoadMore}
+            disabled={isFetchingNextPage}
+            variant="outline"
+          >
+            {isFetchingNextPage ? "Loading more..." : "Load more"}
+          </Button>
+        </div>
+      )}
+
+      {!hasNextPage && items.length > 0 && (
+        <div className="text-center text-sm text-gray-600 py-10">
+          You've reached the end.
+        </div>
+      )}
+    </div>
+  );
+}

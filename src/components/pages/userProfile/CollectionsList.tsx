@@ -1,0 +1,64 @@
+"use client";
+
+import { useState } from "react";
+import { useCollectionsByUserId } from "@/features/collections/hooks";
+import { CollectionCard } from "@/components/ui/Collection";
+import { PaginatedListInline } from "@/components/ui/pagination/PaginatedListInline";
+import { PublicUser } from "@/features/users/types/user";
+import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
+import { NewCollectionModal } from "@/features/collections/components/modal/NewCollectionModal";
+import { useModal } from "@/components/providers/ModalProvider";
+
+interface CollectionsListProps {
+  user: PublicUser;
+  isOwner: boolean;
+}
+
+const DEFAULT_LIMIT = 9;
+
+export function CollectionsList({ user, isOwner }: CollectionsListProps) {
+  const { openModal } = useModal();
+  const [page, setPage] = useState(1);
+
+  const { data, isLoading } = useCollectionsByUserId(
+    user.id,
+    page,
+    DEFAULT_LIMIT,
+  );
+
+  const collections = data?.items ?? [];
+  const totalItems = data?.pageInfo?.total ?? data?.pageInfo?.totalItems ?? 0;
+
+  return (
+    <div className="relative">
+      <Button
+        className="mb-4 sm:absolute sm:top-0 sm:right-0 sm:mb-0 w-full sm:w-auto"
+        onClick={() => {
+          openModal({
+            title: "Create new collection",
+            content: <NewCollectionModal />,
+          });
+        }}
+      >
+        <Plus />
+        New Collection
+      </Button>
+      <PaginatedListInline
+        page={page}
+        limit={DEFAULT_LIMIT}
+        items={collections}
+        totalItems={totalItems}
+        isLoading={isLoading}
+        onPageChange={setPage}
+        renderItem={(collection) => (
+          <CollectionCard data={collection} isOwner={isOwner} />
+        )}
+        title={`Collections by ${user.username}`}
+        layout="custom"
+        gridClassName="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-0 sm:mt-20"
+        emptyMessage="No collections yet."
+      />
+    </div>
+  );
+}
