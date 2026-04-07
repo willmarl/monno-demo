@@ -6,11 +6,7 @@ export const metadata: Metadata = {
   title: "Articles",
 };
 
-export default async function page({
-  searchParams,
-}: {
-  searchParams: Promise<AdminArticleSearchParams>;
-}) {
-  const params = await searchParams;
+export default async function page() {
+  const params: any = {};
   return <AdminArticlePage searchParams={params} />;
 }

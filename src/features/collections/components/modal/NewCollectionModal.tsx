@@ -10,9 +10,9 @@ export function NewCollectionModal() {
   return (
     <InlineNewCollectionForm
       onSuccess={(response) => {
-        toast.success("New Collection created successfully");
+        toast.success("Collection created! (Demo — showing feed)");
         closeModal();
-        router.push(`/collection/${response.id}`); // assuming response has an id
+        router.push("/collection");
       }}
       onError={(err) => {
         toast.error(err.message);

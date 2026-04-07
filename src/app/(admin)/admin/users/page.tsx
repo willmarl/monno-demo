@@ -5,11 +5,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Users",
 };
-export default async function page({
-  searchParams,
-}: {
-  searchParams: Promise<AdminUserSearchParams>;
-}) {
-  const params = await searchParams;
+export default async function page() {
+  const params: any = {};
   return <AdminUserPage searchParams={params} />;
 }

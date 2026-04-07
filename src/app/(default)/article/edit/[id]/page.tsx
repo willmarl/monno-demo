@@ -6,6 +6,10 @@ export const metadata: Metadata = {
   title: "Edit Article",
 };
 
+export function generateStaticParams() {
+  return Array.from({ length: 10 }, (_, i) => ({ id: String(i + 1) }));
+}
+
 export default async function page() {
   const user = await requireAuth();
 

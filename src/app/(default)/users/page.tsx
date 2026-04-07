@@ -5,12 +5,8 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Users",
 };
-export default async function page({
-  searchParams,
-}: {
-  searchParams: Promise<PublicUserSearchParams>;
-}) {
-  const params = await searchParams;
+export default async function page() {
+  const params: any = {};
 
   return <UsersPage searchParams={params} />;
 }

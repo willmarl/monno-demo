@@ -1,5 +1,9 @@
 import { CollectionPage } from "@/components/pages/collection/CollectionPage";
 
+export function generateStaticParams() {
+  return Array.from({ length: 5 }, (_, i) => ({ id: String(i + 1) }));
+}
+
 export default async function page({
   params,
 }: {

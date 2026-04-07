@@ -65,7 +65,7 @@ export default function RegisterForm() {
       <div className="text-center space-y-3">
         <div className="flex justify-center">
           <img
-            src="/favicon.ico"
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH}/favicon.ico`}
             alt="Monno"
             className="w-12 h-12 rounded-lg"
           />

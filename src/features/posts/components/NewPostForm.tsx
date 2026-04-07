@@ -39,7 +39,7 @@ export default function NewPostForm() {
   function onSubmit(data: NewPostInput) {
     newPostMutation.mutate(data, {
       onSuccess: (response) => {
-        toast.success("Post created");
+        toast.success("Post created! (Demo — showing feed)");
 
         // Track post creation
         captureEvent("post_created", {
@@ -48,7 +48,7 @@ export default function NewPostForm() {
           contentLength: data.content.length,
         });
 
-        router.push(`/post/${response.id}`); // assuming response has an id
+        router.push("/post");
       },
     });
   }

@@ -1,16 +1,16 @@
 import type { NextConfig } from "next";
-// import createNextIntlPlugin from 'next-intl/plugin'
-import { withSentryConfig } from "@sentry/nextjs";
+
+const BASE_PATH = "/monno-demo";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  output: "export",
+  basePath: BASE_PATH,
+  assetPrefix: BASE_PATH + "/",
+  images: { unoptimized: true },
+  trailingSlash: true,
+  env: {
+    NEXT_PUBLIC_BASE_PATH: BASE_PATH,
+  },
 };
 
-// const withNextIntl = createNextIntlPlugin()
-
-export default withSentryConfig(nextConfig, {
-  org: "foo",
-  project: "monno",
-  authToken: process.env.SENTRY_AUTH_TOKEN,
-  silent: false,
-});
+export default nextConfig;

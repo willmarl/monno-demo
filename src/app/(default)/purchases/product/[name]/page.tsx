@@ -7,6 +7,10 @@ export const metadata: Metadata = {
   title: "Product Details",
 };
 
+export function generateStaticParams() {
+  return [{ name: "demo" }];
+}
+
 export default function page() {
   return <ProductSlugPage />;
 }

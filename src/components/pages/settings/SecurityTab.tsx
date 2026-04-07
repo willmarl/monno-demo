@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import {
   Card,
   CardContent,
@@ -24,6 +25,7 @@ import { useModal } from "@/components/providers/ModalProvider";
 export function SecurityTab() {
   const deleteProfile = useDeleteProfile();
   const { openModal } = useModal();
+  const router = useRouter();
   return (
     <div className="space-y-6">
       {/* Change Password Card */}
@@ -85,9 +87,7 @@ export function SecurityTab() {
                     onConfirm={() => {
                       deleteProfile.mutate(undefined, {
                         onSuccess: () => {
-                          // Account deleted and cookies cleared by backend
-                          // Just redirect to login
-                          window.location.href = "/login";
+                          router.push("/login");
                         },
                       });
                     }}

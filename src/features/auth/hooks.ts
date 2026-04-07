@@ -1,8 +1,7 @@
 import { fetcher } from "@/lib/fetcher";
 import { User } from "../users/types/user";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useEffect } from "react";
-import { setRefreshCallback } from "@/lib/kyClient";
+import { useRouter } from "next/navigation";
 import {
   login,
   register,
@@ -17,11 +16,12 @@ import {
 
 export function useLogin(path = "/") {
   const queryClient = useQueryClient();
+  const router = useRouter();
   return useMutation({
     mutationFn: login,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["session"] });
-      window.location.href = path;
+      router.push(path);
     },
     throwOnError: false, // Don't throw errors, let component handle them
   });
@@ -29,26 +29,18 @@ export function useLogin(path = "/") {
 
 export function useRegister() {
   const queryClient = useQueryClient();
+  const router = useRouter();
   return useMutation({
     mutationFn: register,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["session"] });
-      window.location.href = "/";
+      router.push("/");
     },
     throwOnError: false, // Don't throw errors, let component handle them
   });
 }
 
 export const useSessionUser = () => {
-  const queryClient = useQueryClient();
-
-  useEffect(() => {
-    setRefreshCallback(() => {
-      // Manual reset: clear the 'null' (Guest) state to force a fresh check
-      queryClient.invalidateQueries({ queryKey: ["session"] });
-    });
-  }, [queryClient]);
-
   return useQuery<User | null>({
     queryKey: ["session"],
     queryFn: async () => {
@@ -71,13 +63,13 @@ export const useSessionUser = () => {
 };
 export const useLogout = () => {
   const queryClient = useQueryClient();
+  const router = useRouter();
   return useMutation({
     mutationFn: () => fetcher("/auth/logout", { method: "POST" }),
     onSuccess: () => {
-      // Clear all auth-related caches
       queryClient.invalidateQueries({ queryKey: ["session"] });
       queryClient.invalidateQueries({ queryKey: ["sessions"] });
-      window.location.href = "/login";
+      router.push("/login");
     },
     throwOnError: false,
   });
@@ -85,13 +77,13 @@ export const useLogout = () => {
 
 export const useLogoutAll = () => {
   const queryClient = useQueryClient();
+  const router = useRouter();
   return useMutation({
     mutationFn: logoutAll,
     onSuccess: () => {
-      // Clear all auth-related caches
       queryClient.invalidateQueries({ queryKey: ["session"] });
       queryClient.invalidateQueries({ queryKey: ["sessions"] });
-      window.location.href = "/login";
+      router.push("/login");
     },
     throwOnError: false,
   });

@@ -7,13 +7,9 @@ export const metadata: Metadata = {
   title: "Articles",
 };
 
-export default async function page({
-  searchParams,
-}: {
-  searchParams: Promise<PublicArticleSearchParams>;
-}) {
+export default async function page() {
   const user = await getServerUser();
-  const params = await searchParams;
+  const params: any = {};
 
   return (
     <div>

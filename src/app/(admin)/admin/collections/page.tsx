@@ -4,18 +4,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Collections",
 };
-export default async function page({
-  searchParams,
-}: {
-  searchParams: Promise<{
-    q?: string;
-    searchFields?: string;
-    sort?: string;
-    page?: string;
-    limit?: string;
-    caseSensitive?: string;
-  }>;
-}) {
-  const params = await searchParams;
+export default async function page() {
+  const params: any = {};
   return <AdminCollectionPage searchParams={params} />;
 }

@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { requireAuth } from "@/features/auth/server";
 import { redirect } from "next/navigation";
 import Layout from "@/components/layout/admin/Layout";
@@ -22,7 +23,9 @@ export default async function layout({
 
   return (
     <div className="p-4">
-      <Layout>{children}</Layout>
+      <Layout>
+        <Suspense fallback={null}>{children}</Suspense>
+      </Layout>
     </div>
   );
 }

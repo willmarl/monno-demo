@@ -1,6 +1,10 @@
 import { UserProfilePage } from "@/components/pages/userProfile/UserProfilePage";
 import type { Metadata } from "next";
 
+export function generateStaticParams() {
+  return [{ username: "bob" }];
+}
+
 export async function generateMetadata({
   params,
 }: {

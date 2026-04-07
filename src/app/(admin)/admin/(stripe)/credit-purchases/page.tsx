@@ -5,12 +5,8 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Credit Purchases",
 };
-export default async function page({
-  searchParams,
-}: {
-  searchParams: Promise<AdminCreditPurchasesSearchParams>;
-}) {
-  const params = await searchParams;
+export default async function page() {
+  const params: any = {};
   return (
     <div>
       <AdminCreditPurchasesPage searchParams={params} />

@@ -56,8 +56,8 @@ export function CreateArticleForm() {
       { data, file: selectedFile ?? undefined },
       {
         onSuccess: (response) => {
-          toast.success("Article created");
-          router.push(`/article/${response?.id}`);
+          toast.success("Article created! (Demo — showing feed)");
+          router.push("/article");
         },
         onError: (error) => {
           toast.error(`Error creating article. ${error.message}`);

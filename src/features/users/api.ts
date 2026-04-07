@@ -1,5 +1,5 @@
-import { api } from "@/lib/kyClient";
 import { fetcher } from "@/lib/fetcher";
+import { DEMO_USER } from "@/lib/demo/mockStore";
 
 import type {
   User,
@@ -11,37 +11,13 @@ import type {
   UpdateUserAdminInput,
 } from "./types/user";
 
-function createFormDataWithFile(
-  data: Record<string, any>,
-  file: File,
-): FormData {
-  const formData = new FormData();
-
-  Object.entries(data).forEach(([key, value]) => {
-    // Skip empty values and avatarPath (will be replaced by actual file)
-    if (value && key !== "avatarPath") {
-      formData.append(key, value as string);
-    }
-  });
-
-  formData.append("avatar", file);
-  return formData;
-}
-
-export const updateProfile = async (data: UpdateProfileInput, file?: File) => {
-  // Use FormData if file is provided, otherwise JSON
-  if (file) {
-    const formData = createFormDataWithFile(data, file);
-    return api("users/me", {
-      method: "PATCH",
-      body: formData,
-    } as any).json();
-  }
-
-  return fetcher("/users/me", {
-    method: "PATCH",
-    json: data,
-  });
+export const updateProfile = async (
+  data: UpdateProfileInput,
+  _file?: File,
+) => {
+  // Demo: file uploads ignored; mutate the in-memory user directly.
+  Object.assign(DEMO_USER, data);
+  return DEMO_USER;
 };
 
 export const changePassword = (data: ChangePasswordInput) =>
@@ -138,23 +114,14 @@ export const createAdminUser = (payload: {
   });
 };
 
-export const updateAdminUser = (
-  id: number,
+export const updateAdminUser = async (
+  _id: number,
   data: UpdateUserAdminInput,
-  file?: File,
+  _file?: File,
 ) => {
-  if (file) {
-    const formData = createFormDataWithFile(data, file);
-    return api(`admin/users/${id}`, {
-      method: "PATCH",
-      body: formData,
-    } as any).json();
-  }
-
-  return fetcher(`/admin/users/${id}`, {
-    method: "PATCH",
-    json: data,
-  });
+  // Demo: only one user (bob) exists; mutate in place.
+  Object.assign(DEMO_USER, data);
+  return DEMO_USER;
 };
 
 export const deleteAdminUser = (id: number) =>

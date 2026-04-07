@@ -7,13 +7,9 @@ export const metadata: Metadata = {
   title: "Posts",
 };
 
-export default async function page({
-  searchParams,
-}: {
-  searchParams: Promise<PublicPostSearchParams>;
-}) {
+export default async function page() {
   const user = await getServerUser();
-  const params = await searchParams;
+  const params: any = {};
 
   return <DefaultPostPage user={user} searchParams={params} />;
 }
