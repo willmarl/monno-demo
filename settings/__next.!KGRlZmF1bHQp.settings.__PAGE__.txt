@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[75909,["/monno-demo/_next/static/chunks/cbd2ae84813bbdc9.js","/monno-demo/_next/static/chunks/22c0faff7361cc34.js","/monno-demo/_next/static/chunks/06409d626337ee94.js","/monno-demo/_next/static/chunks/e15ec9838ca27f1c.js","/monno-demo/_next/static/chunks/0676b6ae00c9d8c6.js","/monno-demo/_next/static/chunks/5abcc9e8def68b87.js","/monno-demo/_next/static/chunks/748d59e9027c0fc5.js","/monno-demo/_next/static/chunks/90c611307059c985.js","/monno-demo/_next/static/chunks/16a923988b7f94eb.js","/monno-demo/_next/static/chunks/f482c1194c37fd0c.js","/monno-demo/_next/static/chunks/1b7f17cd6c548d0e.js"],"ProfileSettingsLayout"]
+3:I[47421,["/monno-demo/_next/static/chunks/253ff2b3a78f6a02.js","/monno-demo/_next/static/chunks/665fb7bd58c129d3.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+0:{"buildId":"muMvpSkfJp6jcV1Kg5t98","rsc":["$","$1","c",{"children":[["$","$L2",null,{}],[["$","script","script-0",{"src":"/monno-demo/_next/static/chunks/1b7f17cd6c548d0e.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
+5:null

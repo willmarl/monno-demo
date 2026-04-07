@@ -1,0 +1,5 @@
+1:"$Sreact.fragment"
+2:I[47421,["/monno-demo/_next/static/chunks/253ff2b3a78f6a02.js","/monno-demo/_next/static/chunks/665fb7bd58c129d3.js"],"ViewportBoundary"]
+3:I[47421,["/monno-demo/_next/static/chunks/253ff2b3a78f6a02.js","/monno-demo/_next/static/chunks/665fb7bd58c129d3.js"],"MetadataBoundary"]
+4:"$Sreact.suspense"
+0:{"buildId":"muMvpSkfJp6jcV1Kg5t98","rsc":["$","$1","h",{"children":[null,["$","$L2",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L3",null,{"children":["$","$4",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Users | Admin Dashboard"}],["$","meta","1",{"name":"description","content":"Fullstack monorepo boilerplate app using nextjs + nesstjs"}]]}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"loading":null,"isPartial":false}

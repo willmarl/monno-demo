@@ -1,0 +1,9 @@
+1:"$Sreact.fragment"
+2:I[33956,["/monno-demo/_next/static/chunks/253ff2b3a78f6a02.js","/monno-demo/_next/static/chunks/665fb7bd58c129d3.js"],"ClientPageRoot"]
+3:I[32619,["/monno-demo/_next/static/chunks/cbd2ae84813bbdc9.js","/monno-demo/_next/static/chunks/22c0faff7361cc34.js","/monno-demo/_next/static/chunks/06409d626337ee94.js","/monno-demo/_next/static/chunks/e15ec9838ca27f1c.js","/monno-demo/_next/static/chunks/0676b6ae00c9d8c6.js","/monno-demo/_next/static/chunks/5abcc9e8def68b87.js","/monno-demo/_next/static/chunks/af7307d4bc568b63.js","/monno-demo/_next/static/chunks/44604362a129f571.js"],"default"]
+6:I[47421,["/monno-demo/_next/static/chunks/253ff2b3a78f6a02.js","/monno-demo/_next/static/chunks/665fb7bd58c129d3.js"],"OutletBoundary"]
+7:"$Sreact.suspense"
+0:{"buildId":"muMvpSkfJp6jcV1Kg5t98","rsc":["$","$1","c",{"children":[["$","$L2",null,{"Component":"$3","serverProvidedParams":{"searchParams":{},"params":{},"promises":["$@4","$@5"]}}],[["$","script","script-0",{"src":"/monno-demo/_next/static/chunks/44604362a129f571.js","async":true}]],["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]]}],"loading":null,"isPartial":false}
+4:{}
+5:{}
+8:null

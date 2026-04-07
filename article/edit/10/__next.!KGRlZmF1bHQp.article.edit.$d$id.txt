@@ -1,0 +1,4 @@
+1:"$Sreact.fragment"
+2:I[32028,["/monno-demo/_next/static/chunks/253ff2b3a78f6a02.js","/monno-demo/_next/static/chunks/665fb7bd58c129d3.js"],"default"]
+3:I[98954,["/monno-demo/_next/static/chunks/253ff2b3a78f6a02.js","/monno-demo/_next/static/chunks/665fb7bd58c129d3.js"],"default"]
+0:{"buildId":"muMvpSkfJp6jcV1Kg5t98","rsc":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}]]}],"loading":null,"isPartial":false}
